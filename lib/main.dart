@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'model/product.dart';
 import 'screens/augmented_reality_screen.dart';
 import 'screens/home_screen.dart';
 
@@ -15,13 +17,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
       home: const HomeScreen(),
       routes: {
-        '/products': (context) => const ProductWithAugmentedRealityScreen(),
+        '/products': (context) =>  ProductWithAugmentedRealityScreen(
+          product: ModalRoute.of(context)!.settings.arguments as Product,
+        ),
       },
     );
   }
